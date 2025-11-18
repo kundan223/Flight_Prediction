@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Delay Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Flight Delay Prediction</h1>
+        <form method="POST">
+            <label for="airline">Airline:</label>
+            <input type="text" id="airline" name="airline" required>
+
+            <label for="origin">Origin:</label>
+            <input type="text" id="origin" name="origin" required>
+
+            <label for="destination">Destination:</label>
+            <input type="text" id="destination" name="destination" required>
+
+            <label for="date">Flight Date:</label>
+            <input type="date" id="date" name="date" required>
+
+            <button type="submit">Predict Delay</button>
+        </form>
+
+        {% if prediction is not none %}
+        <div class="result">
+            <h2>Prediction Result</h2>
+            <p><strong>Airline:</strong> {{ airline }}</p>
+            <p><strong>Origin:</strong> {{ origin }}</p>
+            <p><strong>Destination:</strong> {{ destination }}</p>
+            <p><strong>Predicted Delay:</strong> {{ prediction }} minutes</p>
+        </div>
+        {% endif %}
+
+        {% if error %}
+        <div class="error">
+            <h2>Error</h2>
+            <p>{{ error }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
